@@ -134,4 +134,37 @@ python wafer_classification.py
 - Add real-time inference capabilities
 - Implement model interpretability features
 - ![Resnset50 traing](https://github.com/user-attachments/assets/0d89e100-1bf9-4a3c-9071-e968be0d1a75)
+- ![Resnset50 traing-1](https://github.com/user-attachments/assets/ae40977b-a99e-47f9-bb30-5375b18918e0)
+最終評估結果：
+準確率: 88.62%
+正確預測數: 6648
+總樣本數: 7502
+
+各類別統計：
+Center: 797/859 (92.78%)
+Donut: 71/95 (74.74%)
+Edge-Loc: 848/1027 (82.57%)
+Edge-Ring: 1927/1960 (98.32%)
+Loc: 565/712 (79.35%)
+Near-full: 20/27 (74.07%)
+Random: 152/172 (88.37%)
+Scratch: 100/235 (42.55%)
+none: 2168/2415 (89.77%)
+
+分類報告：
+              precision    recall  f1-score   support
+
+      Center       0.96      0.93      0.94       859
+       Donut       0.90      0.75      0.82        95
+    Edge-Loc       0.85      0.83      0.84      1027
+   Edge-Ring       0.95      0.98      0.96      1960
+         Loc       0.70      0.79      0.74       712
+   Near-full       0.95      0.74      0.83        27
+      Random       0.77      0.88      0.82       172
+     Scratch       0.51      0.43      0.46       235
+        none       0.92      0.90      0.91      2415
+
+    accuracy                           0.89      7502
+   macro avg       0.84      0.80      0.82      7502
+weighted avg       0.89      0.89      0.89      7502
 
