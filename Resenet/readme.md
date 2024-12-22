@@ -133,3 +133,5 @@ python wafer_classification.py
 - Experiment with different architectures
 - Add real-time inference capabilities
 - Implement model interpretability features
+- ![Resnset50 traing](https://github.com/user-attachments/assets/0d89e100-1bf9-4a3c-9071-e968be0d1a75)
+
