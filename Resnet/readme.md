@@ -89,7 +89,8 @@
 - 總樣本數：7,502
 
 ### 訓練過程分析
-![訓練過程](training_history.png)
+![訓練過程]![Resnset50 traing](https://github.com/user-attachments/assets/491e7c4f-e0a1-41f4-b28b-da22902bf6a7)
+
 
 從訓練曲線可以觀察到：
 - 模型損失持續下降，最終趨於穩定
@@ -97,7 +98,8 @@
 - 沒有明顯的過擬合現象
 
 ### 混淆矩陣
-![混淆矩陣](confusion_matrix.png)
+![混淆矩陣]![Resnset50 traing-1](https://github.com/user-attachments/assets/c6e3f9ad-00f2-4122-8104-4560cb65d9a6)
+
 
 混淆矩陣顯示：
 - Edge-Ring 類別具有最好的分類效果
