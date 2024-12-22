@@ -57,12 +57,12 @@
 
 ### 訓練結果視覺化
 #### 模型訓練過程
-![訓練過程]
+![訓練過程]![Desnet](https://github.com/user-attachments/assets/8197a21b-8801-46a8-9190-57ec029269ce)
 - 左圖顯示損失函數下降趨勢
 - 右圖顯示驗證準確率的變化
 
 #### 混淆矩陣
-![混淆矩陣](./confusion_matrix.png)
+![混淆矩陣]![Desnet-2](https://github.com/user-attachments/assets/130838f7-bf98-48f1-8018-1da8f799f4ac)
 - 顯示各類別之間的預測結果
 - 對角線數值越高表示該類別預測越準確
 
