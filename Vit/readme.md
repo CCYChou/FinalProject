@@ -64,7 +64,8 @@
 - 訓練周期：50
 
 ### 訓練過程
-![訓練過程圖](training_history_vit.png)
+![訓練過程圖]![Vit_20241222](https://github.com/user-attachments/assets/98d17bfa-bdf3-43e1-b9c3-8d6c7279defa)
+
 
 訓練曲線顯示：
 - 損失函數穩定下降
@@ -85,7 +86,8 @@
 - none: 精確率0.89, 召回率0.92
 
 ### 混淆矩陣分析
-![混淆矩陣](confusion_matrix.png)
+![混淆矩陣]![Vit_2_20241222](https://github.com/user-attachments/assets/6d045759-7c2a-413f-99ba-06260a55efa4)
+
 
 主要發現：
 - Edge-Ring類別表現最好，準確率達97.81%
