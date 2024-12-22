@@ -70,7 +70,8 @@
 - 訓練週期：50
 
 ### 訓練過程
-![訓練損失與準確率趨勢](training_history.png)
+![訓練損失與準確率趨勢]![Faster202412222036](https://github.com/user-attachments/assets/aae92ebc-f1bf-41e7-a39d-00dfa417080e)
+
 
 訓練過程展示了模型的學習曲線：
 - 訓練損失從初始的0.62持續下降到0.015
@@ -82,7 +83,8 @@
 ### 模型性能
 - 最終測試準確率：90.36%
 - 混淆矩陣分析：
-![混淆矩陣](confusion_matrix.png)
+![混淆矩陣]![Faster202412222036-1](https://github.com/user-attachments/assets/fe9f79e7-e266-4520-b6e8-e5ebe9f64727)
+
 
 ### 各類別性能指標
 | 類別      | 精確率 | 召回率 | F1分數 |
