@@ -1,110 +1,157 @@
-# Wafer Classification Using ResNet50
+# 晶圓缺陷分類系統
 
-## Table of Contents
-- [Business Understanding](#business-understanding)
-- [Data Understanding](#data-understanding)
-- [Data Preparation](#data-preparation)
-- [Modeling](#modeling)
-- [Evaluation](#evaluation)
-- [Deployment](#deployment)
+## 目錄
+- [專案概述](#專案概述)
+- [資料理解](#資料理解)
+- [資料準備](#資料準備)
+- [模型建構](#模型建構)
+- [模型評估](#模型評估)
+- [部署說明](#部署說明)
 
-## Business Understanding
+## 專案概述
 
-### Project Overview
-This project implements a deep learning solution for wafer defect classification in semiconductor manufacturing. Using ResNet50 architecture, the system aims to automatically classify wafer defects from image data, helping to improve quality control in semiconductor production.
+### 項目說明
+本項目實現了一個基於深度學習的晶圓缺陷分類系統。使用 ResNet50 架構，系統能夠自動對半導體製造過程中的晶圓缺陷進行分類，有助於提升品質控制的效率。
 
-### Business Objectives
-- Automate the wafer defect detection process
-- Reduce manual inspection time and human error
-- Improve quality control accuracy in semiconductor manufacturing
-- Enable real-time defect classification
+### 業務目標
+- 自動化晶圓缺陷檢測流程
+- 減少人工檢查時間和人為錯誤
+- 提高半導體製造品質控制的準確性
+- 實現即時缺陷分類
 
-### Success Criteria
-- High classification accuracy on test data
-- Reliable model performance across different defect types
-- Efficient processing time for real-time applications
+### 成功標準
+- 測試資料集上具有高分類準確率
+- 在不同類型缺陷上具有穩定的模型表現
+- 具備即時處理能力
 
-## Data Understanding
+## 資料理解
 
-### Data Sources
-The project uses the following data files:
-- `x_train_org_20210614.pickle`: Training feature data
-- `y_train_org_20210614.pickle`: Training labels
-- `x_test_20210614.pickle`: Test feature data
-- `y_test_20210614.pickle`: Test labels
+### 資料來源
+項目使用以下資料檔案：
+- `x_train_org_20210614.pickle`：訓練特徵資料
+- `y_train_org_20210614.pickle`：訓練標籤
+- `x_test_20210614.pickle`：測試特徵資料
+- `y_test_20210614.pickle`：測試標籤
 
-### Data Description
-- Input data consists of wafer images
-- Images are preprocessed and stored as numpy arrays
-- Single-channel (grayscale) images
-- Multiple defect classes for classification
+### 資料描述
+- 輸入資料為晶圓圖像
+- 圖像以 numpy 陣列形式儲存
+- 單通道（灰度）圖像
+- 多類別缺陷分類問題
 
-## Data Preparation
+## 資料準備
 
-### Data Preprocessing
-1. Data Loading
-   - Loading pickle files using Python's pickle module
-   - Converting data to PyTorch tensors
+### 資料預處理
+1. 資料載入
+   - 使用 Python pickle 模組載入資料
+   - 轉換為 PyTorch 張量
 
-2. Data Transformation
-   - Adding channel dimension for CNN compatibility
-   - Converting labels using LabelEncoder
-   - Normalizing input data
+2. 資料轉換
+   - 增加通道維度以符合 CNN 要求
+   - 使用 LabelEncoder 轉換標籤
+   - 輸入資料正規化
 
-3. Dataset Creation
-   - Custom WaferDataset class implementing PyTorch's Dataset
-   - Data loading with DataLoader for batch processing
-   - Train-test split maintained
+3. 資料集建立
+   - 實現自定義 WaferDataset 類
+   - 使用 DataLoader 進行批次處理
+   - 保持訓練測試集分割
 
-## Modeling
+## 模型建構
 
-### Model Architecture
-- Base model: ResNet50
-- Modifications:
-  - Adapted first convolution layer for single-channel input
-  - Modified final fully connected layer for classification
-  - Pre-trained weights utilized for transfer learning
+### 模型架構
+- 基礎模型：ResNet50
+- 主要修改：
+  - 調整第一層以接收單通道輸入
+  - 修改最後的全連接層以符合分類需求
+  - 使用預訓練權重進行遷移學習
 
-### Training Configuration
+### 訓練配置
 ```python
-- Batch size: 32
-- Learning rate: 0.001
-- Optimizer: Adam
-- Loss function: CrossEntropyLoss
-- Number of epochs: 50
-- Device: CUDA (GPU) if available
+- 批次大小：32
+- 學習率：0.001
+- 優化器：Adam
+- 損失函數：CrossEntropyLoss
+- 訓練週期：50
+- 運行設備：CUDA（GPU）
 ```
 
-### Training Process
-- Implements early stopping based on validation accuracy
-- Saves best model weights during training
-- Tracks training loss and validation accuracy
-- Uses tqdm for progress monitoring
+### 訓練過程
+- 實現基於驗證準確率的早停機制
+- 保存最佳模型權重
+- 追蹤訓練損失和驗證準確率
+- 使用 tqdm 顯示訓練進度
 
-## Evaluation
+## 模型評估
 
-### Performance Metrics
-- Overall accuracy
-- Per-class accuracy
-- Confusion matrix
-- Classification report including:
-  - Precision
-  - Recall
-  - F1-score
+### 整體表現
+- 模型準確率：88.62%
+- 正確預測數：6,648
+- 總樣本數：7,502
 
-### Visualization
-- Training loss curve
-- Validation accuracy curve
-- Confusion matrix heatmap
-- Training history saved as 'training_history.png'
+### 訓練過程分析
+![訓練過程](![Resnset50 traing](https://github.com/user-attachments/assets/0ea3a339-f6d7-4289-9c6a-4fa8042329be))
 
-## Deployment
+從訓練曲線可以觀察到：
+- 模型損失持續下降，最終趨於穩定
+- 驗證準確率在早期快速上升，之後維持在 87-88% 左右
+- 沒有明顯的過擬合現象
 
-### Model Saving
-- Best model weights saved as 'best_wafer_model.pth'
-- Label encoder mapping preserved for inference
+### 混淆矩陣
+![混淆矩陣](![Resnset50 traing-1](https://github.com/user-attachments/assets/c75104ac-47a8-4995-b1f6-a03ecdf1bcce))
 
-### Requirements
+混淆矩陣顯示：
+- Edge-Ring 類別具有最好的分類效果
+- Scratch 類別較容易與其他類別混淆
+- 大多數類別都有不錯的分類表現
+
+### 各類別表現
+
+| 缺陷類型    | 正確/總數    | 準確率  |
+|------------|-------------|---------|
+| Center     | 797/859     | 92.78%  |
+| Donut      | 71/95       | 74.74%  |
+| Edge-Loc   | 848/1027    | 82.57%  |
+| Edge-Ring  | 1927/1960   | 98.32%  |
+| Loc        | 565/712     | 79.35%  |
+| Near-full  | 20/27       | 74.07%  |
+| Random     | 152/172     | 88.37%  |
+| Scratch    | 100/235     | 42.55%  |
+| none       | 2168/2415   | 89.77%  |
+
+### 詳細分類指標
+
+| 缺陷類型    | 精確率 | 召回率 | F1分數 | 樣本數  |
+|------------|--------|--------|--------|---------|
+| Center     | 0.96   | 0.93   | 0.94   | 859     |
+| Donut      | 0.90   | 0.75   | 0.82   | 95      |
+| Edge-Loc   | 0.85   | 0.83   | 0.84   | 1,027   |
+| Edge-Ring  | 0.95   | 0.98   | 0.96   | 1,960   |
+| Loc        | 0.70   | 0.79   | 0.74   | 712     |
+| Near-full  | 0.95   | 0.74   | 0.83   | 27      |
+| Random     | 0.77   | 0.88   | 0.82   | 172     |
+| Scratch    | 0.51   | 0.43   | 0.46   | 235     |
+| none       | 0.92   | 0.90   | 0.91   | 2,415   |
+
+### 平均指標
+| 指標類型    | 精確率 | 召回率 | F1分數 |
+|------------|--------|--------|--------|
+| 巨觀平均    | 0.84   | 0.80   | 0.82   |
+| 加權平均    | 0.89   | 0.89   | 0.89   |
+
+### 關鍵發現
+- Edge-Ring 缺陷的分類效果最好，準確率達 98.32%
+- Center 和 none 類別也有超過 89% 的良好表現
+- Scratch 缺陷的分類效果最差，準確率僅 42.55%
+- 大多數類別都展現出平衡的精確率和召回率
+- 模型在大部分類別上都保持穩定的表現
+
+## 部署說明
+
+### 模型儲存
+- 最佳模型權重儲存為 'best_wafer_model.pth'
+- 保存標籤編碼器以供推論使用
+
+### 環境需求
 - Python 3.x
 - PyTorch
 - torchvision
@@ -115,56 +162,36 @@ The project uses the following data files:
 - seaborn
 - tqdm
 
-### Usage
-1. Place data files in the './data/' directory
-2. Run the main script:
+### 使用說明
+1. 建立虛擬環境：
 ```bash
-python wafer_classification.py
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# 或
+venv\Scripts\activate     # Windows
 ```
 
-### Output
-- Trained model weights
-- Performance visualizations
-- Detailed classification reports
-- Training history plots
+2. 安裝依賴：
+```bash
+pip install -r requirements.txt
+```
 
-## Future Improvements
-- Implement data augmentation for better generalization
-- Experiment with different architectures
-- Add real-time inference capabilities
-- Implement model interpretability features
-- ![Resnset50 traing](https://github.com/user-attachments/assets/0d89e100-1bf9-4a3c-9071-e968be0d1a75)
-- ![Resnset50 traing-1](https://github.com/user-attachments/assets/ae40977b-a99e-47f9-bb30-5375b18918e0)
-最終評估結果：
-準確率: 88.62%
-正確預測數: 6648
-總樣本數: 7502
+3. 確保資料放在正確位置：
+```
+data/
+    x_train_org_20210614.pickle
+    y_train_org_20210614.pickle
+    x_test_20210614.pickle
+    y_test_20210614.pickle
+```
 
-各類別統計：
-Center: 797/859 (92.78%)
-Donut: 71/95 (74.74%)
-Edge-Loc: 848/1027 (82.57%)
-Edge-Ring: 1927/1960 (98.32%)
-Loc: 565/712 (79.35%)
-Near-full: 20/27 (74.07%)
-Random: 152/172 (88.37%)
-Scratch: 100/235 (42.55%)
-none: 2168/2415 (89.77%)
+4. 執行程式：
+```bash
+python main.py
+```
 
-分類報告：
-              precision    recall  f1-score   support
-
-      Center       0.96      0.93      0.94       859
-       Donut       0.90      0.75      0.82        95
-    Edge-Loc       0.85      0.83      0.84      1027
-   Edge-Ring       0.95      0.98      0.96      1960
-         Loc       0.70      0.79      0.74       712
-   Near-full       0.95      0.74      0.83        27
-      Random       0.77      0.88      0.82       172
-     Scratch       0.51      0.43      0.46       235
-        none       0.92      0.90      0.91      2415
-
-    accuracy                           0.89      7502
-   macro avg       0.84      0.80      0.82      7502
-weighted avg       0.89      0.89      0.89      7502
-
+## 未來改進方向
+- 實作資料增強以提升模型泛化能力
+- 嘗試不同的模型架構
+- 增加即時推論功能
+- 加入模型解釋功能
